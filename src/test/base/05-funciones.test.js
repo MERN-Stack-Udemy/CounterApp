@@ -16,8 +16,8 @@ describe( "pruebas en 05-funciones", () => {
   // getUsuarioActivo(_nombre_) debe devolver un objeto con el nombre
 
   test('getUsuarioActivo(_nombre_) debe devolver un objeto con el nombre', () => {
+    
     const nombre = "job";
-    // const userTest = 
     const user = getUsuarioActivo(nombre);
 
     expect( user ).toEqual( {
