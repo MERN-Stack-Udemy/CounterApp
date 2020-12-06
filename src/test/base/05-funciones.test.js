@@ -1,4 +1,4 @@
-const { getUser, getUsuarioActivo} = require("../../base/05-funciones");
+const { getUser, getUsuarioActivo} = require('../../base/05-funciones');
 
 describe( "pruebas en 05-funciones", () => {
   
