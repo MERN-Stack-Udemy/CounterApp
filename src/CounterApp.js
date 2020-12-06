@@ -10,23 +10,15 @@ function CounterApp( {value = 12} ) {
   const handdleReset = () => setCounter(value);
 
   const handdleSub = () => setCounter(counter - 1);
-  
-  const handdleCounter = ( type ) => {
-    switch(type){
-      case "ADD": setCounter( (c) => c + 1 ); break;
-      case "SUB": setCounter(counter - 1); break;
-      case "RESET": setCounter(value); break;
-      default:;
-    }
-  }
+
 
   return (
     <div>
       <h1>Counter App</h1>
       <h2>Value : {counter}</h2>
-      <button onClick={ () => handdleCounter("SUB") } >-1</button>
-      <button onClick={ () => handdleCounter("RESET") } >RESET</button>
-      <button onClick={ () => handdleCounter("ADD") } >+1</button>
+      <button onClick={ () => handdleSub("SUB") } >-1</button>
+      <button onClick={ () => handdleReset("RESET") } >RESET</button>
+      <button onClick={ () => handdleAdd("ADD") } >+1</button>
     </div>
   )
 }
