@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import PropTypes from 'prop-types';
 
 const PrimeraApp = ({ saludo, edad, idioma }) => {
@@ -13,7 +13,7 @@ const PrimeraApp = ({ saludo, edad, idioma }) => {
 };
 
 PrimeraApp.propTypes = {
-  saludo : PropTypes.string.isRequired,
+  saludo : PropTypes.string.isRequired, 
   edad : PropTypes.number.isRequired
 }
 PrimeraApp.defaultProps = {
