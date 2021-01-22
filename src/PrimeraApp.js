@@ -1,23 +1,23 @@
 // import React from 'react';
 import PropTypes from 'prop-types';
 
-const PrimeraApp = ({ saludo, edad, idioma }) => {
+const PrimeraApp = ({ greet, years, language }) => {
   
   return (
     <>
-      <h1>Hola soy {saludo}!!!</h1>
-      <p>att. Net Flanders y tengo {edad} anios</p>
-      <p id="idioma" >este articulo esta en el idioma {idioma}</p>
+      <h1>Hi i'm {greet} !!!</h1>
+      <p>I have {years} years</p>
+      <p id="language" >{language}</p>
     </>
   );
 };
 
 PrimeraApp.propTypes = {
-  saludo : PropTypes.string.isRequired, 
-  edad : PropTypes.number.isRequired
+  greet : PropTypes.string.isRequired, 
+  years : PropTypes.number.isRequired
 }
 PrimeraApp.defaultProps = {
-  idioma: "ingles",
+  language: "ingles",
 }
 
 export default PrimeraApp;

@@ -6,36 +6,36 @@ import PrimeraApp from "../PrimeraApp";
 describe('Pruebas en <PrimeraApp />', () => {
   
   // test('debe mostrar el mensaje "Hola soy German"', () => {
-  //   const saludo = 'Hola soy German';
-  //   const {getByText} = render( <PrimeraApp saludo="German" edad={23} /> );
-  //   expect( getByText( saludo )).toBeInTheDocument;
+  //   const greet = 'Hola soy German';
+  //   const {getByText} = render( <PrimeraApp greet="German" years={23} /> );
+  //   expect( getByText( greet )).toBeInTheDocument;
   // })
   
   test('deve mostrar <PrimeraApp /> correctamente', () => {
-    const saludo = 'Hola soy German';
-    const edad = 23;
-    const wrapper = shallow( <PrimeraApp saludo = { saludo } edad = { edad } /> );
+    const greet = 'Hola soy German';
+    const years = 23;
+    const wrapper = shallow( <PrimeraApp greet = { greet } years = { years } /> );
 
     expect(wrapper).toMatchSnapshot();
 
   })
 
   test('deve mostrar el idioma del articulo', () => {
-    const saludo = 'Hola soy German';
-    const edad = 23;
-    const idioma = "ES"
-    const parrafoIdioma = `este articulo esta en el idioma ${idioma}`
+    const greet = 'Hola soy German';
+    const years = 23;
+    const language = "ES"
+    const parrafolanguage = `este articulo esta en el language ${language}`
 
     const wrapper  = shallow(
       <PrimeraApp 
-          saludo= {saludo} 
-          edad= {edad} 
-          idioma={idioma} 
+          greet= {greet} 
+          years= {years} 
+          language={language} 
       />
     );
-    const testpParrafo = wrapper.find('#idioma').text()
+    const testpParrafo = wrapper.find('#language').text()
     // console.log(testpParrafo)
-    expect( testpParrafo ).toBe ( parrafoIdioma)
+    expect( testpParrafo ).toBe ( parrafolanguage)
   })
   
   
