@@ -5,9 +5,9 @@ const PrimeraApp = ({ saludo, edad, idioma }) => {
   
   return (
     <>
-      <h1>Hola soy {saludo}</h1>
+      <h1>Hola soy {saludo}!!!</h1>
       <p>att. Net Flanders y tengo {edad} anios</p>
-      <p>este articulo esta en el idioma {idioma}</p>
+      <p id="idioma" >este articulo esta en el idioma {idioma}</p>
     </>
   );
 };
