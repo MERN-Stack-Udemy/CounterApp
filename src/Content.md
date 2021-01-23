@@ -165,17 +165,71 @@ test('debe retornar el url de la imagen ', async () => {
 })
 ```
 
-### Starting to test using Enzyme
+_not the best example_
+
+### Starting test using Enzyme
+
+Today the enzyme adapter is only available for react version <= 16 and the current version and rely on a external adapter from [wojtekmaj github](https://github.com/wojtekmaj/enzyme-adapter-react-17)
+
+If you already find the adapter in the [official documentation of enzyme](https://enzymejs.github.io/enzyme/) follow the enzyme installations
 
 
+```sh
+npm i --save-dev enzyme
+```
 
+and the adapter
 
+```sh
+npm install --save-dev @wojtekmaj/enzyme-adapter-react-17
+```
 
+Now configure enzyme to use the adapter you want it to use 
 
+file: `src/setupTests.js`
 
+```jsx
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
+Enzyme.configure({ adapter: new Adapter() });
+```
 
+If you have an error woth the enzyme adapter try run the following command:
 
+```sh
+npm install --legacy-peer-deps --save-dev @wojtekmaj/enzyme-adapter-react-17
+```
+
+I will test the following component:
+
+```jsx
+import React, { useState } from 'react'
+import PropTypes from 'prop-types';
+
+function CounterApp( {value = 12} ) {
+  
+  const [ counter, setCounter ] = useState(value);
+
+  const handdleAdd = () => setCounter( (c) => c + 1 );
+  const handdleReset = () => setCounter(value);
+  const handdleSub = () => setCounter(counter - 1);
+
+  return (
+    <div>
+      <h1>Counter App</h1>
+      <h2>Value : {counter}</h2>
+      <button onClick={ () => handdleSub() } >-1</button>
+      <button onClick={ () => handdleReset() } >RESET</button>
+      <button onClick={ () => handdleAdd() } >+1</button>
+    </div>
+  )
+}
+
+CounterApp.propTypes = {  value: PropTypes.number.isRequired, }
+
+export default CounterApp
+```
 
 
 
