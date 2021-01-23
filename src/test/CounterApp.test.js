@@ -7,8 +7,7 @@ describe('Test sobre <CounterApp />', () => {
 
   beforeEach( () => {
     wrapper = shallow( <CounterApp value = {10} /> );
-    }
-  )
+  });
 
   test('snapshot de counterApp', () => {
     

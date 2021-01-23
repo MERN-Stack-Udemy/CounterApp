@@ -159,7 +159,7 @@ Testing methods using `asyng - await`
 ```jsx
 import { getImagen } from '../async-await'
 
-test('debe retornar el url de la imagen ', async () => {
+test('must return the url of the image', async () => {
   const url = await getImagen();
   expect( url.includes('https://') ).toBe( true )
 })
@@ -277,7 +277,7 @@ We will use `wrapper.find('button').at(2).simulate('click')` to simulate simulat
 Something that is repeated in every test is `const wrapper = shallow( <CounterApp value = {15} /> )` we cloud declare it outsite the test and inside the `describe` scope and only declare it in the test that require, in thos case, a specific `value` to be tested
 
 ```jsx
-describe('Test sobre <CounterApp />', () => {
+describe('Test about <CounterApp />', () => {
   let wrapper = shallow( <CounterApp value = {15} /> );;
   
   test('increase the counter value by one', () => {
@@ -304,4 +304,24 @@ describe('Test sobre <CounterApp />', () => {
     // test code
   })
 ```
+
+### Starting to Snapshot
+
+A **Snapshot** is a photographthat has been taken quickly. We can have this kind of Snapshot, also for a React component.
+
+```jsx
+test('CounterApp snapshot', () => {
+  const wrapper = shallow( <CounterApp value = {10} /> );
+  expect(wrapper).toMatchSnapshot();
+})
+```
+
+Suppose Itoook a _snapshot_ of React component yesterday. Today I'm adding another `<tag>` to the component.
+
+Now, the _snapshot_ we took yerterday is different from what we have today as the component. If we compare these two (the snapshot and the component) we can fint where the difference occurs.  
+
+This technique provides by Jest, to compare components with their snapshots, is known as **Snapshot Testing in Jest.**
+
+The **Snapshots** will be stored in the tests directory such as:
+`src/test/__snapshots__/ComponentName.test.js.snap`
 
