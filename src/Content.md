@@ -231,5 +231,77 @@ CounterApp.propTypes = {  value: PropTypes.number.isRequired, }
 export default CounterApp
 ```
 
+We will use shallow for the rendering of the Component
 
+```jsx
+import { shallow } from 'enzyme'
+import CounterApp from '../CounterApp'
+
+describe('Test about <CounterApp />', () => {
+  test(`validate the text of the rendered component with a given 'value'`, () => {
+    const value = 100;
+    const renderValue = `Value : ${value}`
+    const wrapper = shallow( <CounterApp value = {value} /> );
+    const paragraphValue = wrapper.find('h2').text();
+    expect( paragraphValue ).toBe( renderValue );
+  })
+}
+```
+
+
+Note that we use `fint('_element_').text()` to _fint_ tha element `h2`.
+
+As there is only once `h2` element in the Component, we have no problem to access it, but if there are more `h2` elements or others, the `fint(..)` method will **return an array**, in the order they appear in the `Component.js` file from top to bottom.
+
+We can be more specific by the using the `fint(..)` method when accessing by the class: `fint('.className')` or id: `fint('#idElement')`
+
+An example for accessing the elements of an array would be to try to access the buttons
+
+```jsx
+test('increase the counter value by one', () => {
+  const wrapper = shallow( <CounterApp value = {15} /> );
+  wrapper.find('button').at(2).simulate('click');
+  const counterText = wrapper.find('h2').text()
+  expect( counterText ).toBe("Value : 11")
+})
+``` 
+
+We will use `wrapper.find('button').at(2).simulate('click')` to simulate simulate click event for increase the counter that is a `hook`, we use `.at(_index_)` to access the button at a position in the array returned by `fint()` and `simulate('click')` simulates `'click'` event.
+
+```jsx
+<button onClick={ ... } >-1</button>  // .at(0)
+<button onClick={ ... } >RESET</button> // .at(1)
+<button onClick={ ... } >+1</button>  // .at(2)
+```
+
+Something that is repeated in every test is `const wrapper = shallow( <CounterApp value = {15} /> )` we cloud declare it outsite the test and inside the `describe` scope and only declare it in the test that require, in thos case, a specific `value` to be tested
+
+```jsx
+describe('Test sobre <CounterApp />', () => {
+  let wrapper = shallow( <CounterApp value = {15} /> );;
+  
+  test('increase the counter value by one', () => {
+  const valueParrafo = wrapper.find('h2').text();
+    // test code ... 
+}
+// all test ...
+```
+
+But this can cause problems in testing because everyone can access the wrapper and make modifications that we have to consider
+
+Let's use `beforeEach()`
+
+```jsx
+describe('Test sobre <CounterApp />', () => {
+  // inside of describe scope 
+  let wrapper = shallow( <CounterApp value = {10} /> );
+
+  beforeEach( () => {
+    wrapper = shallow( <CounterApp value = {10} /> );
+  });
+
+  test('..' , => {
+    // test code
+  })
+```
 
