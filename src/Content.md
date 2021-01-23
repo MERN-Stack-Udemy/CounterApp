@@ -289,7 +289,7 @@ describe('Test sobre <CounterApp />', () => {
 
 But this can cause problems in testing because everyone can access the wrapper and make modifications that we have to consider
 
-Let's use `beforeEach()`
+Let's use `beforeEach()` to perform a tast that repeats itself before running any test to perform a task that is repeated before running any test. so that we set tha same initial `value` for each test.
 
 ```jsx
 describe('Test sobre <CounterApp />', () => {
